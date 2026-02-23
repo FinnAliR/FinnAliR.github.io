@@ -194,7 +194,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div><p class="mb-3">Be sure to check out my other projects!</p>
       </div>
     </div>
   </div>
@@ -208,7 +208,7 @@
         </button>
         </div>
       <div class="card-body">
-        <iframe class="game-embed-frame" frameborder="0" src="https://itch.io/embed-upload/12428884?color=0080ff" allowfullscreen="" width="980" height="640" title="Play Fortress of Elements"></iframe>
+        <iframe class="game-embed-frame" frameborder="0" src="about:blank" data-embed-src="https://itch.io/embed-upload/12428884?color=0080ff" allowfullscreen="" width="980" height="640" title="Play Fortress of Elements"></iframe>
         <div class="mt-2">
           <a class="btn btn-primary btn-sm project-link" href="https://finnali.itch.io/fortress-of-elements" target="_blank" rel="noopener noreferrer">
             <img src="icons/Itchio16.png" class="icon-16"> Open on itch.io
@@ -333,6 +333,11 @@
         }
 
         function openModal() {
+          var embeddedFrame = modal.querySelector("[data-embed-src]");
+          if (embeddedFrame && embeddedFrame.getAttribute("src") !== embeddedFrame.getAttribute("data-embed-src")) {
+            embeddedFrame.setAttribute("src", embeddedFrame.getAttribute("data-embed-src"));
+          }
+
           modal.hidden = false;
           document.body.classList.add("modal-open");
           openButton.setAttribute("aria-expanded", "true");
@@ -346,8 +351,14 @@
         }
 
         function closeModal() {
+          var embeddedFrame = modal.querySelector("[data-embed-src]");
+
           modal.hidden = true;
           openButton.setAttribute("aria-expanded", "false");
+
+          if (embeddedFrame) {
+            embeddedFrame.setAttribute("src", "about:blank");
+          }
 
           if (document.querySelector(".email-modal:not([hidden])") === null) {
             document.body.classList.remove("modal-open");
