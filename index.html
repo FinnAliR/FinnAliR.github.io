@@ -87,6 +87,9 @@
                   <p>Unity tower defense game.</p>
                   <div class="project-meta">C#</div>
                   <div class="project-actions">
+                    <button type="button" id="openFoeGameButton" class="btn btn-primary btn-sm project-link" aria-haspopup="dialog" aria-controls="foeGameModal" aria-expanded="false">
+                      <img src="icons/joystick-4.png" class="icon-16"> Play in Site
+                    </button>
                     <a class="btn btn-primary btn-sm project-link" href="https://github.com/jn-gr/TDS_game" target="_blank" rel="noopener noreferrer">
                       <img src="icons/Pixel_GitHub_16.png" class="icon-16"> Open on GitHub
                     </a>
@@ -191,6 +194,25 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="foeGameModal" class="email-modal" hidden>
+    <div class="card mb-4 email-modal-window game-modal-window" role="dialog" aria-modal="true" aria-labelledby="foeGameModalTitle">
+    <div class="card-header email-modal-header">
+        <h4 id="foeGameModalTitle" class="my-0 font-weight-normal"><img src="icons/joystick-4.png" class="icon-16"> Fortress of Elements</h4>
+        <button type="button" id="closeFoeGameButton" class="btn window-close-btn" aria-label="Close game window" title="Close">
+          <img src="icons/msg_error-0.png" class="icon-16" alt="">
+        </button>
+        </div>
+      <div class="card-body">
+        <iframe class="game-embed-frame" frameborder="0" src="https://itch.io/embed-upload/12428884?color=0080ff" allowfullscreen="" width="980" height="640" title="Play Fortress of Elements"></iframe>
+        <div class="mt-2">
+          <a class="btn btn-primary btn-sm project-link" href="https://finnali.itch.io/fortress-of-elements" target="_blank" rel="noopener noreferrer">
+            <img src="icons/Itchio16.png" class="icon-16"> Open on itch.io
+          </a>
         </div>
       </div>
     </div>
@@ -352,6 +374,7 @@
 
       setupPopup("openEmailButton", "emailModal", "closeEmailButton");
       setupPopup("openInterestsButton", "interestsModal", "closeInterestsButton");
+      setupPopup("openFoeGameButton", "foeGameModal", "closeFoeGameButton");
     })();
   </script>
 </body>
