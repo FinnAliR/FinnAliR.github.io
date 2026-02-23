@@ -6,8 +6,9 @@
   <link rel="shortcut icon" href="icons/computer-3.png" type="image/png">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
-  <meta author="FinnTheislander">
+  <meta author="FinnTheIslander">
 </head>
+
 <body class="window-body">
   <nav class="navbar navbar-expand-lg navbar-light navbar-95 ">
     <a class="navbar-brand" href="#">
@@ -27,24 +28,26 @@
       </div>
   </nav>
 
-  <div class="card" style="width: 60vh;">
+  <div class="container page-section">
+    <div class="card about-card">
     <div class="card-header icon">
         <h4 class="my-0 font-weight-normal "><img src="icons/note-0.png"> About me</h4>
         </div>
         <div class="card-body">
          <ul class="list-unstyled mt-3 mb-4">
           <li>Hey I'm Finn!</li>
-           <li>I grow pretty flowers and feed bees</li>
+           <li>I raise plants and code, in my free time I play Padel, compete in archery, and read books.</li>
          </ul>
-        <div class="btn-group btn-block" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-secondary"><img src="icons/envelope_closed-1.png" class="icon-16"> Email me</button>
-          <button type="button" class="btn btn-secondary"><img src="icons/globe_map-4.png" class="icon-16">  Find me IRL</button>
-         <button type="button" class="btn btn-secondary">3</button>
+        <div class="btn-group btn-block contact-buttons" role="group" aria-label="Basic example">
+          <button type="button" id="openEmailButton" class="btn btn-secondary" aria-haspopup="dialog" aria-controls="emailModal" aria-expanded="false"><img src="icons/envelope_closed-1.png" class="icon-16"> Email me</button>
+          <a href="https://github.com/FinnAliR" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><img src="icons/globe_map-4.png" class="icon-16"> My GitHub</a>
+         <button type="button" id="openInterestsButton" class="btn btn-secondary" aria-haspopup="dialog" aria-controls="interestsModal" aria-expanded="false"><img src="icons/joystick-4.png" class="icon-16"> Interests</button>
       </div>
     </div> 
+    </div>
   </div> 
 
-  <div class="container">
+  <div class="container page-section">
         <div class="card mb-4">
             <div class="card-header">
                 <h4 class="my-0 font-weight-normal">My Friends</h4>
@@ -68,40 +71,42 @@
         </div>
     </div>
 
-<div class="container">
-    <div class="card mb-4">
-    <div class="card-header">
-        <h4 class="my-0 font-weight-normal">Interests</h4>
+  <div id="interestsModal" class="email-modal" hidden>
+    <div class="card mb-4 email-modal-window" role="dialog" aria-modal="true" aria-labelledby="interestsModalTitle">
+    <div class="card-header email-modal-header">
+        <h4 id="interestsModalTitle" class="my-0 font-weight-normal"><img src="icons/joystick-4.png" class="icon-16"> Interests</h4>
+        <button type="button" id="closeInterestsButton" class="btn window-close-btn" aria-label="Close interests window" title="Close">
+          <img src="icons/msg_error-0.png" class="icon-16" alt="">
+        </button>
         </div>
       <div class="card-body">
           <div class="row text-center">
-              <div class="col">
-                    <img src="icons/calendar-1.png">
+              <div class="col-6 col-md-3 mb-3">
+                    <img src="icons/msn3-3.png" style="width: 48px; height: 48px;" alt="">
                     <h5>Gardening</h5>
                     <p>test.</p>
               </div>
-              <div class="col">
-                    <img src="icons/briefcase-4.png">
+              <div class="col-6 col-md-3 mb-3">
+                    <img src="icons/joystick-4.png" alt="">
                     <h5>Video Games</h5>
                     <p>test.</p>
               </div>
-              <div class="col">
-                    <img src="icons/cd_audio_cd_a-3.png">
+              <div class="col-6 col-md-3 mb-3">
+                    <img src="icons/cd_audio_cd_a-3.png" alt="">
                     <h5>Music</h5>
                     <p>test.</p>
               </div>
-              <div class="col">
-                    <img src="icons/computer_2_cool-4.png">
+              <div class="col-6 col-md-3 mb-3">
+                    <img src="icons/computer_2_cool-4.png" alt="">
                     <h5>Electronics!</h5>
                     <p>test.</p>
               </div>
-          
           </div>
-          </div>
-        </div>
-</div>
+      </div>
+    </div>
+  </div>
 
-  <div class="container">
+  <div class="container page-section">
       <div class="card mb-4">
     <div class="card-header">
         <h4 class="my-0 font-weight-normal">My Playlist</h4>
@@ -111,11 +116,15 @@
       <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3F6FRcK5g2uVUT94ORK6D3" width="100%" height="152" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
     </div>
   </div>
+  </div>
   
-  <div class="container">
-    <div class="card mb-4">
-    <div class="card-header">
-        <h4 class="my-0 font-weight-normal">Send me an e-mail!</h4>
+  <div id="emailModal" class="email-modal" hidden>
+    <div class="card mb-4 email-modal-window" role="dialog" aria-modal="true" aria-labelledby="emailModalTitle">
+    <div class="card-header email-modal-header">
+        <h4 id="emailModalTitle" class="my-0 font-weight-normal"><img src="icons/envelope_closed-1.png" class="icon-16"> Send me an e-mail!</h4>
+        <button type="button" id="closeEmailButton" class="btn window-close-btn" aria-label="Close email window" title="Close">
+          <img src="icons/msg_error-0.png" class="icon-16" alt="">
+        </button>
         </div>
       <div class="card-body">
  <form>
@@ -136,7 +145,7 @@
     <textarea class="form-95" id="exampleFormControlTextarea1" rows="3"></textarea>
   </div>
   <div class="form-group row">
-    <div class="col-sm-3">Check it you are spamer</div>
+    <div class="col-sm-3">Check if you are spamer :p</div>
     <div class="col-sm-9">
       <div class="form-check">
         <input class="form-check-input" type="checkbox" id="gridCheck1">
@@ -155,7 +164,6 @@
         </div>
       </div>
   </div>
-</div>
        
   <footer class="taskbar">
         <div class="row" style="margin-right: 0px;">
@@ -165,18 +173,61 @@
             </div>
             <div class="col-4 time">css by Alex B</div>
         </div>
-  </footer> 
+  </footer>
   <script>
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        var site_data = JSON.parse(this.responseText);
-        document.write(site_data.result)
-        document.getElementById("hitcount").innerHTML = site_data.info.views;
+    (function () {
+      function setupPopup(openId, modalId, closeId) {
+        var openButton = document.getElementById(openId);
+        var closeButton = document.getElementById(closeId);
+        var modal = document.getElementById(modalId);
+
+        if (!openButton || !closeButton || !modal) {
+          return;
+        }
+
+        function openModal() {
+          modal.hidden = false;
+          document.body.classList.add("modal-open");
+          openButton.setAttribute("aria-expanded", "true");
+
+          window.setTimeout(function () {
+            var firstField = modal.querySelector("input, textarea, button");
+            if (firstField) {
+              firstField.focus();
+            }
+          }, 0);
+        }
+
+        function closeModal() {
+          modal.hidden = true;
+          openButton.setAttribute("aria-expanded", "false");
+
+          if (document.querySelector(".email-modal:not([hidden])") === null) {
+            document.body.classList.remove("modal-open");
+          }
+
+          openButton.focus();
+        }
+
+        openButton.addEventListener("click", openModal);
+        closeButton.addEventListener("click", closeModal);
+
+        modal.addEventListener("click", function (event) {
+          if (event.target === modal) {
+            closeModal();
+          }
+        });
+
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape" && !modal.hidden) {
+            closeModal();
+          }
+        });
       }
-    };
-    xhttp.open("GET", "https://weirdscifi.ratiosemper.com/neocities.php?sitename=finntheislander", true);
-    xhttp.send();
+
+      setupPopup("openEmailButton", "emailModal", "closeEmailButton");
+      setupPopup("openInterestsButton", "interestsModal", "closeInterestsButton");
+    })();
   </script>
 </body>
 </html>

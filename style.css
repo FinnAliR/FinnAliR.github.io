@@ -335,6 +335,82 @@ NAVBAR
 .navbar-toggler{
     width: auto;
 }
+
+/* Site-specific layout tweaks */
+.page-section{
+    margin-top: 16px;
+}
+.page-section .card{
+    max-width: 960px;
+    margin: 0 auto;
+}
+.about-card{
+    width: 100%;
+    max-width: 760px !important;
+}
+.contact-buttons{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.contact-buttons .btn{
+    flex: 1 1 180px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-decoration: none;
+}
+.contact-buttons .icon-16{
+    margin-bottom: 0;
+}
+.modal-open{
+    overflow: hidden;
+}
+.email-modal{
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background: rgba(0, 64, 64, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+}
+.email-modal-window{
+    width: min(960px, calc(100vw - 24px));
+    margin: 0;
+}
+.email-modal-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+.email-modal-header h4{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+}
+.email-modal-window .card-body{
+    max-height: min(70vh, 640px);
+    overflow: auto;
+}
+.window-close-btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    min-width: 28px;
+    height: 24px;
+    padding: 0;
+    margin-left: auto;
+}
+.window-close-btn .icon-16{
+    margin-bottom: 0;
+}
 /*
 
 FOOTER
@@ -345,14 +421,11 @@ FOOTER
     background-color: silver;
     margin: 16px 0 0 0;
     padding: 0 8px;
-    position: static;
-    bottom: 0;
     border-top: 2px outset #fff;
     z-index: 228;
     width: 100%;
     margin-right: 0px;
-    position: absolute;
-    bottom: 0;
+    position: static;
 }
 .taskbar .start-button {
     cursor: default;
