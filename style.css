@@ -168,8 +168,12 @@ Scrollbar (only chrome & safari)
     border-bottom-color: #424242;
     background: silver;
     color: black;
-    padding: 0 0 4px;
+    padding: 2px 8px 5px;
+    line-height: 1.15;
     border-radius: 1px;
+}
+.btn:not(.window-close-btn){
+    min-height: 30px;
 }
 .btn:hover {
     border: 2px inset #fff;
@@ -338,6 +342,14 @@ NAVBAR
 .navbar-toggler{
     width: auto;
 }
+.navbar-visitor{
+    margin-left: auto;
+    padding: 4px;
+    color: #212529;
+    font-size: 12px;
+    line-height: 1.2;
+    text-align: right;
+}
 
 /* Site-specific layout tweaks */
 .page-section{
@@ -444,13 +456,17 @@ NAVBAR
     flex-direction: column;
 }
 .project-tile-inner{
-    display: flex;
-    align-items: stretch;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 96px;
+    grid-template-areas:
+        "content thumb"
+        "actions actions";
+    align-items: start;
     gap: 10px;
     min-height: 110px;
 }
 .project-content{
-    flex: 1 1 auto;
+    grid-area: content;
     min-width: 0;
     display: flex;
     flex-direction: column;
@@ -478,6 +494,7 @@ NAVBAR
     line-height: 1.1;
 }
 .project-actions{
+    grid-area: actions;
     display: flex;
     flex-wrap: wrap;
     gap: 4px;
@@ -491,7 +508,7 @@ NAVBAR
     flex-shrink: 0;
 }
 .project-thumb{
-    flex: 0 0 96px;
+    grid-area: thumb;
     width: 96px;
     height: 96px;
     border: 2px inset #d5d5d5;
@@ -526,9 +543,69 @@ NAVBAR
         linear-gradient(135deg, #cfcfcf 25%, #bdbdbd 25%, #bdbdbd 50%, #cfcfcf 50%, #cfcfcf 75%, #bdbdbd 75%);
     background-size: 12px 12px;
 }
-@media (max-width: 575.98px){
+/* Also treat touch devices with portrait-ish ratios as mobile (high-res phones/foldables). */
+@media (max-width: 767.98px),
+       (hover: none) and (pointer: coarse) and (max-aspect-ratio: 4/3){
+    .btn:not(.window-close-btn){
+        min-height: 40px;
+        padding-top: 4px;
+        padding-bottom: 7px;
+        font-size: 14px;
+    }
+    .project-link{
+        min-height: 40px;
+        padding-top: 4px;
+        padding-bottom: 7px;
+    }
+    .taskbar .start-button{
+        min-height: 40px;
+        padding: 4px 8px 6px 6px;
+    }
+    body{
+        padding-bottom: 0;
+    }
+    .navbar-95{
+        align-items: flex-start;
+    }
+    .navbar-95 .navbar-brand{
+        max-width: calc(100% - 52px);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .navbar-95 .navbar-toggler{
+        margin-left: auto;
+    }
+    .navbar-95 .navbar-collapse{
+        width: 100%;
+        flex-basis: 100%;
+    }
+    .navbar-visitor{
+        width: 100%;
+        margin-left: 0;
+        padding: 4px 6px 6px;
+        text-align: left;
+        white-space: normal;
+    }
+}
+@media (max-width: 575.98px),
+       (hover: none) and (pointer: coarse) and (max-aspect-ratio: 4/3){
+    .contact-buttons .btn{
+        flex-basis: 100%;
+    }
     .project-tile-inner{
-        flex-direction: column;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "content"
+            "thumb"
+            "actions";
+    }
+    .project-actions{
+        width: 100%;
+    }
+    .project-actions .project-link{
+        width: 100%;
+        justify-content: flex-start;
     }
     .project-thumb{
         width: 100%;
@@ -837,5 +914,34 @@ TABLES
     padding: .75rem;
     vertical-align: top;
     border-top: 1px solid #c0c0c0;
+}
+
+@media (max-width: 767.98px),
+       (hover: none) and (pointer: coarse) and (max-aspect-ratio: 4/3){
+    body{
+        padding-bottom: calc(84px + env(safe-area-inset-bottom));
+    }
+    .taskbar{
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 4px 6px calc(4px + env(safe-area-inset-bottom));
+    }
+    .taskbar .col-8,
+    .taskbar .col-4{
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .taskbar .time{
+        text-align: left;
+        margin-top: 4px;
+        font-size: 12px;
+    }
+    .taskbar .start-button{
+        margin-right: 4px;
+    }
 }
 
