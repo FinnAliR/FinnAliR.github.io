@@ -380,6 +380,45 @@ NAVBAR
 .contact-buttons .icon-16{
     margin-bottom: 0;
 }
+.interests-intro{
+    color: #212529;
+    margin-bottom: 10px;
+}
+.interests-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+}
+.interest-card{
+    color: #212529;
+    background: #c0c0c0;
+    border: 2px inset #d5d5d5;
+    box-shadow: -1px -1px 0 0 #828282;
+    padding: 8px;
+}
+.interest-card-header{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    min-width: 0;
+}
+.interest-card-header h5{
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.15;
+}
+.interest-card p{
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.3;
+}
+.interest-card-icon{
+    width: 32px;
+    height: 32px;
+    flex: 0 0 32px;
+    image-rendering: pixelated;
+}
 .modal-open{
     overflow: hidden;
 }
@@ -590,6 +629,12 @@ NAVBAR
 }
 @media (max-width: 575.98px),
        (hover: none) and (pointer: coarse) and (max-aspect-ratio: 4/3){
+    .interests-grid{
+        grid-template-columns: 1fr;
+    }
+    .interest-card{
+        padding: 10px;
+    }
     .contact-buttons .btn{
         flex-basis: 100%;
     }
