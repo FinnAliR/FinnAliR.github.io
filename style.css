@@ -254,6 +254,18 @@ CARDS
 .card-header.icon{
     padding-left: 4px;
 }
+.card-header-title-icon{
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    image-rendering: pixelated;
+    vertical-align: text-bottom;
+    margin-bottom: 2px;
+}
+.card-header-title-icon-lg{
+    width: 24px;
+    height: 24px;
+}
 .header-inactive{
     background: gray !important;
 }
