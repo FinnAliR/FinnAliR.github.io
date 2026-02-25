@@ -44,7 +44,7 @@
         <div class="btn-group btn-block contact-buttons" role="group" aria-label="Basic example">
           <button type="button" id="openEmailButton" class="btn btn-secondary" aria-haspopup="dialog" aria-controls="emailModal" aria-expanded="false"><img src="icons/envelope_closed-1.png" class="icon-16" alt=""> Email me</button>
           <a href="https://github.com/FinnAliR" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><img src="icons/Pixel_GitHub_16.png" class="icon-16" alt=""> My GitHub</a>
-         <button type="button" id="openInterestsButton" class="btn btn-secondary" aria-haspopup="dialog" aria-controls="interestsModal" aria-expanded="false"><img src="icons/joystick-4.png" class="icon-16" alt=""> Interests</button>
+         <a href="interests.html" class="btn btn-secondary"><img src="icons/joystick-4.png" class="icon-16" alt=""> Interests</a>
       </div>
     </div> 
     </div>
@@ -231,83 +231,6 @@
     </div>
   </div>
 
-  <div id="interestsModal" class="email-modal" hidden>
-    <div class="card mb-4 email-modal-window" role="dialog" aria-modal="true" aria-labelledby="interestsModalTitle">
-    <div class="card-header email-modal-header">
-        <h4 id="interestsModalTitle" class="my-0 font-weight-normal"><img src="icons/help_book_computer-3.png" class="icon-16" alt=""> Interests</h4>
-        <button type="button" id="closeInterestsButton" class="btn window-close-btn" aria-label="Close interests window" title="Close">
-          <img src="icons/msg_error-0.png" class="icon-16" alt="">
-        </button>
-        </div>
-      <div class="card-body">
-        <p class="interests-intro">
-          This is the stuff I get genuinely excited about: learning how things work, building things with my hands, and spending time outdoors doing hobbies that keep me active.
-        </p>
-        <div class="interests-grid" role="list" aria-label="Interest categories">
-          <section class="interest-card" role="listitem">
-            <div class="interest-card-header">
-              <img src="icons/computer_2_cool-4.png" class="interest-card-icon" alt="">
-              <h5>Computer Science</h5>
-            </div>
-            <p>
-              I love computer science because it lets me turn ideas into real projects, and there is always something new to learn, test, or build. I am also a member of RISC V, which fits perfectly with how much I enjoy low-level systems and hardware-minded computing.
-            </p>
-          </section>
-
-          <section class="interest-card" role="listitem">
-            <div class="interest-card-header">
-              <img src="icons/globe_map-3.png" class="interest-card-icon" alt="">
-              <h5>Research & Experimental Science</h5>
-            </div>
-            <p>
-              I am also really into experimental science, and getting exposure to places like CERN, the Large Hadron Collider, and the UKAEA Fusion campus made that curiosity even stronger.
-            </p>
-          </section>
-
-          <section class="interest-card" role="listitem">
-            <div class="interest-card-header">
-              <img src="icons/application_hammer_grouppol-0.png" class="interest-card-icon" alt="">
-              <h5>Building & Tinkering</h5>
-            </div>
-            <p>
-              I have a lot of fun tinkering, building, and messing with hardware or systems to see how they work and how I can improve them, especially when robotics is involved.
-            </p>
-          </section>
-
-          <section class="interest-card" role="listitem">
-            <div class="interest-card-header">
-              <img src="icons/joystick_alt-0.png" class="interest-card-icon" alt="">
-              <h5>Sports</h5>
-            </div>
-            <p>
-              I love sports for the energy and focus they bring, especially padel, archery, and football.
-            </p>
-          </section>
-
-          <section class="interest-card" role="listitem">
-            <div class="interest-card-header">
-              <img src="icons/help_book_computer-3.png" class="interest-card-icon" alt="">
-              <h5>History & Geopolitics</h5>
-            </div>
-            <p>
-              I am really into history and geopolitics, and I enjoy exploring that through HEMA, MUN, and wargames.
-            </p>
-          </section>
-
-          <section class="interest-card" role="listitem">
-            <div class="interest-card-header">
-              <img src="icons/tree-1.png" class="interest-card-icon" alt="">
-              <h5>Gardening & Nature</h5>
-            </div>
-            <p>
-              Gardening and time in nature are the slower side of my interests, and I love that balance. I especially enjoy tulips and cherry trees.
-            </p>
-          </section>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div class="container page-section">
       <div class="card mb-4">
     <div class="card-header">
@@ -362,10 +285,12 @@
   </div>
        
   <footer class="taskbar">
-        <div class="row" style="margin-right: 0px;">
+        <div class="row">
             <div class="col-8">
-                <a href="https://finntheislander.neocities.org/?#" class="btn start-button"><img src="icons/users-1.png" class="icon-16" alt="">Author</a>
+                <a href="index.html" class="btn start-button is-active" aria-current="page"><img src="icons/computer-3.png" class="icon-16" alt=""> Home</a>
+                <a href="interests.html" class="btn start-button"><img src="icons/help_book_computer-3.png" class="icon-16" alt=""> Interests</a>
                 <a href="https://github.com/FinnAliR" class="btn start-button"><img src="icons/Pixel_GitHub_16.png" class="icon-16" alt=""> GitHub</a>
+                <span class="taskbar-status-box" aria-live="polite">visit # <span id="hitcountTaskbar">...</span></span>
             </div>
             <div class="col-4 time">Site inspired by Alex B</div>
         </div>
@@ -374,9 +299,19 @@
     (function () {
       function loadVisitorCount() {
         var hitCountEl = document.getElementById("hitcount");
+        var taskbarHitCountEl = document.getElementById("hitcountTaskbar");
 
-        if (!hitCountEl) {
+        if (!hitCountEl && !taskbarHitCountEl) {
           return;
+        }
+
+        function setHitCountText(value) {
+          if (hitCountEl) {
+            hitCountEl.textContent = value;
+          }
+          if (taskbarHitCountEl) {
+            taskbarHitCountEl.textContent = value;
+          }
         }
 
         fetch("https://api.countapi.xyz/hit/finnalir.github.io/homepage")
@@ -389,7 +324,7 @@
           })
           .then(function (data) {
             if (data && typeof data.value === "number") {
-              hitCountEl.textContent = String(data.value);
+              setHitCountText(String(data.value));
               return;
             }
 
@@ -401,9 +336,9 @@
               var key = "finnalir-local-visitor-count";
               var current = Number(window.localStorage.getItem(key) || "0") + 1;
               window.localStorage.setItem(key, String(current));
-              hitCountEl.textContent = String(current);
+              setHitCountText(String(current));
             } catch (e) {
-              hitCountEl.textContent = "N/A";
+              setHitCountText("N/A");
             }
           });
       }
@@ -504,7 +439,6 @@
       loadVisitorCount();
       setupMailtoForm();
       setupPopup("openEmailButton", "emailModal", "closeEmailButton");
-      setupPopup("openInterestsButton", "interestsModal", "closeInterestsButton");
       setupPopup("openFoeGameButton", "foeGameModal", "closeFoeGameButton");
     })();
   </script>

@@ -399,7 +399,7 @@ NAVBAR
     margin-top: 16px;
 }
 .page-section .card{
-    max-width: 960px;
+    width: 100%;
     margin: 0 auto;
 }
 .about-card{
@@ -429,8 +429,13 @@ NAVBAR
 }
 .interests-grid{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
+}
+@media (min-width: 992px){
+    .interests-grid{
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
 }
 .interest-card{
     color: #212529;
@@ -728,12 +733,47 @@ FOOTER
 }
 .taskbar .start-button {
     cursor: default;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
     border: 1px outset #fff;
-    padding: 0 0 0 2px;
+    padding: 1px 8px 2px 5px;
     box-shadow: 1px 1px #000;
+    margin-right: 4px;
     margin-bottom: 2px;
     font-size: 14px;
+    line-height: 1.1;
+    min-height: 24px;
+    vertical-align: bottom;
+    white-space: nowrap;
+}
+.taskbar .start-button .icon-16{
+    margin-bottom: 0;
+}
+.taskbar .start-button.is-active,
+.taskbar .start-button[aria-current="page"]{
+    border: 1px inset #fff;
+    box-shadow: -1px -1px #000;
+    padding: 2px 7px 1px 6px;
+}
+.taskbar .col-8{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+.taskbar .taskbar-status-box{
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+    padding: 1px 8px 2px;
+    margin-bottom: 2px;
+    border: 2px inset #d5d5d5;
+    box-shadow: -1px -1px 0 0 #828282;
+    color: #212529;
+    font-size: 14px;
+    line-height: 1.1;
+    vertical-align: bottom;
+    white-space: nowrap;
 }
 .taskbar .row{
     margin-left: 0;
@@ -1033,6 +1073,18 @@ TABLES
     }
     .taskbar .start-button{
         margin-right: 4px;
+    }
+    .taskbar .start-button.is-active,
+    .taskbar .start-button[aria-current="page"]{
+        padding: 5px 7px 5px 7px;
+    }
+    .taskbar .col-8{
+        align-items: stretch;
+    }
+    .taskbar .taskbar-status-box{
+        margin-top: 2px;
+        min-height: 40px;
+        padding: 4px 8px 6px;
     }
 }
 
