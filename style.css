@@ -293,24 +293,44 @@ NAVBAR
 
 */
 .navbar-95{
-    
     background: silver;
     margin: 0;
     border: 1px outset #fff;
     min-height: 40px;
     padding: 0 6px;
-    color:#212529;
+    color: #212529;
 }
-
-.navbar-brand{
-    color:#212529;
+.navbar-95 .navbar-brand{
+    color: #212529;
     padding: 0 6px;
+    min-height: 32px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    line-height: 1.1;
 }
-.nav-link{
+.navbar-95 .navbar-brand:hover,
+.navbar-95 .navbar-brand:focus{
+    color: #08216b;
     text-decoration: none;
-    display: inline-block;
+}
+.navbar-brand-icon{
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
+    image-rendering: pixelated;
+}
+.navbar-95 .navbar-nav{
+    align-items: center;
+}
+.navbar-95 .nav-link{
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
     padding: 0 9px;
-    color:#212529;
+    min-height: 30px;
+    color: #212529;
+    line-height: 1.1;
 }
 .dropdown-menu{
     display: none;
@@ -342,6 +362,13 @@ NAVBAR
 .navbar-toggler{
     width: auto;
 }
+.navbar-95 .navbar-toggler{
+    padding: 2px 6px;
+    min-height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
 .navbar-visitor{
     margin-left: auto;
     padding: 4px;
@@ -349,6 +376,10 @@ NAVBAR
     font-size: 12px;
     line-height: 1.2;
     text-align: right;
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    white-space: nowrap;
 }
 
 /* Site-specific layout tweaks */
@@ -618,6 +649,9 @@ NAVBAR
     .navbar-95 .navbar-collapse{
         width: 100%;
         flex-basis: 100%;
+    }
+    .navbar-95 .navbar-nav{
+        align-items: flex-start;
     }
     .navbar-visitor{
         width: 100%;
