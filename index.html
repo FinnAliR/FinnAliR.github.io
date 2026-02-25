@@ -24,7 +24,7 @@
       </ul>
     </div>
         <div style="margin-left:auto; padding: 4px;">
-        You are visitor # <span id="hitcount"></span>
+        You are visitor # <span id="hitcount">...</span>
       </div>
   </nav>
 
@@ -274,33 +274,27 @@
         </button>
         </div>
       <div class="card-body">
- <form>
-  <div class="form-group row">
-    <label for="inputEmail3" class="col-sm-2 col-form-label"><img src="/icons/envelope_closed-1.png" class="icon-16-4" alt=""> Your e-mail:</label>
-    <div class="col-sm-10">
-      <input type="email" class="form-95" id="inputEmail3">
+ <form id="emailContactForm" data-recipient-email="YOUR_EMAIL@example.com">
+  <div class="form-group">
+    <div class="alert alert-warning mb-3" role="status">
+      <img src="icons/envelope_closed-1.png" class="icon-16" alt=""> Clicking send will open your email app.
     </div>
   </div>
   <div class="form-group row">
-    <label for="inputName" class="col-sm-2 col-form-label"><img src="/icons/user_world-0.png" class="icon-16-4" alt=""> Your name:</label>
-    <div class="col-sm-10">
+    <label for="inputName" class="col-sm-3 col-form-label email-form-label"><img src="/icons/user_world-0.png" class="icon-16-4" alt=""> Name:</label>
+    <div class="col-sm-9">
       <input type="text" class="form-95" id="inputName">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputSubject" class="col-sm-3 col-form-label email-form-label"><img src="/icons/envelope_closed-1.png" class="icon-16-4" alt=""> Subject:</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-95" id="inputSubject">
     </div>
   </div>
   <div class="form-group">
     <label for="exampleFormControlTextarea1">Message content:</label>
     <textarea class="form-95" id="exampleFormControlTextarea1" rows="3"></textarea>
-  </div>
-  <div class="form-group row">
-    <div class="col-sm-3">Check if you are spamer :p</div>
-    <div class="col-sm-9">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="gridCheck1">
-        <label class="form-check-label" for="gridCheck1">
-          Yes, I am spamer
-        </label>
-      </div>
-    </div>
   </div>
   <div class="form-group row">
     <div class="col-sm-10">
@@ -323,6 +317,80 @@
   </footer>
   <script>
     (function () {
+      function loadVisitorCount() {
+        var hitCountEl = document.getElementById("hitcount");
+
+        if (!hitCountEl) {
+          return;
+        }
+
+        fetch("https://api.countapi.xyz/hit/finnalir.github.io/homepage")
+          .then(function (response) {
+            if (!response.ok) {
+              throw new Error("Count API request failed");
+            }
+
+            return response.json();
+          })
+          .then(function (data) {
+            if (data && typeof data.value === "number") {
+              hitCountEl.textContent = String(data.value);
+              return;
+            }
+
+            throw new Error("Invalid count payload");
+          })
+          .catch(function () {
+            // Fallback: local per-browser count if third-party API is blocked.
+            try {
+              var key = "finnalir-local-visitor-count";
+              var current = Number(window.localStorage.getItem(key) || "0") + 1;
+              window.localStorage.setItem(key, String(current));
+              hitCountEl.textContent = String(current);
+            } catch (e) {
+              hitCountEl.textContent = "N/A";
+            }
+          });
+      }
+
+      function setupMailtoForm() {
+        var form = document.getElementById("emailContactForm");
+
+        if (!form) {
+          return;
+        }
+
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          var recipient = form.getAttribute("data-recipient-email") || "";
+          var subjectEl = document.getElementById("inputSubject");
+          var senderNameEl = document.getElementById("inputName");
+          var messageEl = document.getElementById("exampleFormControlTextarea1");
+
+          if (!recipient || recipient === "YOUR_EMAIL@example.com") {
+            window.alert("Set your email address in index.html (data-recipient-email on #emailContactForm) first.");
+            return;
+          }
+
+          var subjectInput = subjectEl ? subjectEl.value.trim() : "";
+          var senderName = senderNameEl ? senderNameEl.value.trim() : "";
+          var message = messageEl ? messageEl.value.trim() : "";
+
+          var subject = subjectInput || "Website message";
+          var body =
+            (message || "(no message)") + "\n\n" +
+            "--\n" +
+            "Name: " + (senderName || "(not provided)") + "\n" +
+            "Reply from: your email app";
+
+          window.location.href =
+            "mailto:" + encodeURIComponent(recipient) +
+            "?subject=" + encodeURIComponent(subject) +
+            "&body=" + encodeURIComponent(body);
+        });
+      }
+
       function setupPopup(openId, modalId, closeId) {
         var openButton = document.getElementById(openId);
         var closeButton = document.getElementById(closeId);
@@ -383,6 +451,8 @@
         });
       }
 
+      loadVisitorCount();
+      setupMailtoForm();
       setupPopup("openEmailButton", "emailModal", "closeEmailButton");
       setupPopup("openInterestsButton", "interestsModal", "closeInterestsButton");
       setupPopup("openFoeGameButton", "foeGameModal", "closeFoeGameButton");
@@ -390,4 +460,3 @@
   </script>
 </body>
 </html>
-

@@ -609,6 +609,15 @@ FORMS
     margin-top: 4px;
     padding-left:2px;
 }
+.email-form-label{
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+}
+.email-form-label .icon-16-4{
+    margin-bottom: 0;
+}
 .bootstrap-select,
 textarea:focus, 
 textarea.form-control:focus, 
